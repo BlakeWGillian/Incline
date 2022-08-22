@@ -1,0 +1,75 @@
+{% extends 'user/base.html' %}
+{% block title %}Docs{% endblock title %}
+{% block docs %}active" aria-current="page"{% endblock %}
+{% block content %}
+$('.collapse').collapse()
+<div style="padding-top: 25px; padding-bottom: 25px" class="border-top">
+    <div class="px-4 text-white">
+        <p style="margin-bottom: 0px;">Click each title to view the code, or visit <a href="/about/" target="_self">GitHub</a></p>
+        <h1 style="font-family: Liberation Mono; margin-bottom: 0px;" class="">Backend</h1>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapseV" role="button" aria-expanded="false" aria-controls="collapseV">Views ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapseV">
+            <p style="margin-bottom: 5px">Django uses 'views' to handle the logic of each user request.</p>
+            <pre><code class="python" style="background: #1a1a1a;">{{views}}</code></pre>
+        </div>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapseU" role="button" aria-expanded="false" aria-controls="collapseU">Urls ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapseU">
+            <p style="margin-bottom: 5px">The 'Urls' file takes the submitted URL and serves the associated web page.</p>
+            <pre><code class="python" style="background: #1a1a1a;">{{urls}}</code></pre>
+        </div>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapseM" role="button" aria-expanded="false" aria-controls="collapseM">Models ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapseM">
+            <p style="margin-bottom: 5px">Django uses 'Models' to organise user infomation in the SQLite server.</p>
+            <pre><code class="python" style="background: #1a1a1a;">{{models}}</code></pre>
+        </div>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapseMa" role="button" aria-expanded="false" aria-controls="collapseMa">Manage ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapseMa">
+            <p style="margin-bottom: 5px">The 'Manage' file helps boot the server.</p>
+            <pre><code class="python" style="background: #1a1a1a;">{{manage}}</code></pre>
+        </div>
+    </div>
+</div>
+
+
+<div style="padding-top: 10px; padding-bottom: 200px" class="border-top">
+    <div class="px-4 text-white">
+        <h1 style="font-family: Liberation Mono" class="">Frontend</h1>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapse1" role="button" aria-expanded="false" aria-controls="collapse1">Base ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapse1">
+            <p style="margin-bottom: 5px">Django uses 'Base' pages to act as templates for other html pages. It contains common UI elements such as a navbar.</p>
+            <pre><code class="html" style="background: #1a1a1a;">{{base}}</code></pre>
+        </div>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapse2" role="button" aria-expanded="false" aria-controls="collapse2">Contracts ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapse2">
+            <p style="margin-bottom: 5px">The 'Contracts' page displays the user's contracts.</p>
+            <pre><code class="html" style="background: #1a1a1a;">{{contracts}}</code></pre>
+        </div>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapse3" role="button" aria-expanded="false" aria-controls="collapse3">Help ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapse3">
+            <p style="margin-bottom: 5px">The 'Help' page contains a form for users to get help.</p>
+            <pre><code class="html" style="background: #1a1a1a;">{{help}}</code></pre>
+        </div>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapse4" role="button" aria-expanded="false" aria-controls="collapse4">Login ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapse4">
+            <p style="margin-bottom: 5px">The 'Login' page contains a form for users to login.</p>
+            <pre><code class="hmtl" style="background: #1a1a1a;">{{login}}</code></pre>
+        </div>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapse5" role="button" aria-expanded="false" aria-controls="collapse5">New_contract ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapse5">
+            <p style="margin-bottom: 5px">The 'New_contract' page allows users to create a new contract.</p>
+            <pre><code class="html" style="background: #1a1a1a;">{{new_contract}}</code></pre>
+        </div>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapse6" role="button" aria-expanded="false" aria-controls="collapse6">Register ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapse6">
+            <p style="margin-bottom: 5px">The 'Register' page contains a form for users to register.</p>
+            <pre><code class="html" style="background: #1a1a1a;">{{register}}</code></pre>
+        </div>
+        <h3 style="transform: translate(0, -10px); margin-bottom: 0px; padding-left: 20px;" class="px" data-bs-toggle="collapse" href="#collapse7" role="button" aria-expanded="false" aria-controls="collapse7">Home ⌄</h3>
+        <div  style="padding-left: 20px;" class="collapse" id="collapse7">
+            <p style="margin-bottom: 5px">The 'Home' page acts as the landing page for incline.</p>
+            <pre><code class="hmtl" style="background: #1a1a1a;">{{home}}</code></pre>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

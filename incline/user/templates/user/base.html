@@ -1,0 +1,66 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlightjs@9.16.2/styles/an-old-hope.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
+    <link rel="icon" href="static/projectname/favicon.ico">
+</head>
+    <header>
+    <nav style="font-family: Courier New" class="navbar navbar-expand-lg bg-black navbar-dark fixed-top">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="/">INCLINE</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse position-absolute end-0" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link {% block home %}"{% endblock %} href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block docs %}"{% endblock %} href="/docs/">Docs</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block about %}"{% endblock %} href="/about/">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% block help %}"{% endblock %} href="/user/help/">Help</a>
+            </li>
+
+            {% if request.user.username %}
+
+            <div class="dropdown" style="margin-top: 7px; margin-right: 10px; margin-left: 7px">
+                <div class="dropdown-toggle" type="text" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" style="color: white;"><img src="{% static 'user/images/portrait_placeholder.png' %}" class="rounded-circle" width="25" height="25"></div>
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark" aria-labelledby="dropdownMenuButton1" style="transform: translate(-1px, 0); background: black; box-shadow: 0 0 0 1px white;">
+                  <li><a class="dropdown-item disabled">{{ request.user.username }}</a></li>
+                  <li><a class="dropdown-item" style="color: {% block contracts %}lightgrey{% endblock contracts %};" href="/user/contracts/0">Contracts</a></li>
+                  <!--<li><a class="dropdown-item" style="color: {% block messages %}lightgrey{% endblock messages %};" href="/user/messages">Messages</a></li>-->
+                  <li><a class="dropdown-item" style="color: lightgrey;" href="/user/logout_user/">Logout</a></li>
+                </ul>
+              </div>
+
+            {% else %}
+
+            <li class="nav-item">
+                <a class="nav-link {% block login %}"{% endblock %} href="/user/login_user/">Login</a>
+            </li>
+
+            {% endif %}
+            </ul>
+        </div>
+        </div>
+    </nav>
+    </header>
+  <body style="background: black;">
+    {% block content %}{% endblock content %}
+    <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.5.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

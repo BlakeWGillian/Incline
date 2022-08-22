@@ -1,0 +1,102 @@
+{% extends 'user/base.html' %}
+{% block title %}New Contract{% endblock title %}
+
+{% block content %}
+
+<form class="" style="margin-top: 56px; scroll-snap-type: y mandatory; " method="post"> {% csrf_token %}<!-- all encompasing form -->
+    <div style="padding-top: 20px; padding-bottom: 200px" class="border-top">
+        <div class="px-4 text-white">
+            <h1 style="font-family: Liberation Mono" class="">About Your Contract</h1>
+            <h3 style="transform: translate(0, -20px);" class="px">Define what you want to do, and how you want to do it</h3>
+        </div>
+        <div style="width: 400px; margin-left: 30px; padding-top: 50px" class="text-white">
+            <div style="" class="form-outline mb-4">
+            <input type="" name="title" class="form-control bg-black text-white"/>
+            <label class="form-label" for="title"><strong>Title:</strong> A summary of your goal</label>
+            </div>
+
+            <div style="" class="form-outline mb-4">
+                <input type="" name="aim" class="form-control bg-black text-white"/>
+                <label class="form-label" for="aim"><strong>Aim:</strong> What you want to achieve and how</label>
+            </div>
+
+            <div style="" class="form-outline mb-4">
+                <input type="" name="wager" class="form-control bg-black text-white"/>
+                <label class="form-label" for="wager"><strong>Wager:</strong> How much is on the line</label>
+            </div>
+
+            <div class="form-group">
+                <input style="width: 160px" type="date" name="date" class="form-control bg-black text-white" placeholder="mm/dd/yy"/>
+                <label for="date" style="font-weight: normal;" class="form-label"><strong>End Date:</strong> When your contract ends</label></label>
+            </div>
+            <a href="/about/">Need Help?</a>
+        </div>
+    </div>
+    <div style="padding-top: 20px; padding-bottom: 300px" class="border-top">
+        <div class="px-4 text-white">
+            <h1 style="font-family: Liberation Mono" class="">Arbitration</h1>
+            <h3 style="transform: translate(0, -20px);" class="px">Select who evaluates your contract</h3>
+        </div>
+        <div style="width: 400px; margin-left: 30px" class="text-white">
+            <div style="" class="form-outline mb-4">
+            <input type="" name="title" class="form-control bg-black text-white"/>
+            <label class="form-label" for="title"><strong>Judge 1:</strong> the first judge of your contract</label>
+            </div>
+
+            <div style="" class="form-outline mb-4">
+                <input type="" name="aim" class="form-control bg-black text-white"/>
+                <label class="form-label" for="aim"><strong>Judge 2:</strong> the second judge of your contract</label>
+                <label class="form-label" for="aim">If left blank, only judge 1 may evaluate the contract</label>
+            </div>
+            <a href="/about/">Need Help?</a>
+    </div>
+    <div style="padding-top: 20px; padding-bottom: 300px" class="border-top">
+        <div class="px-4 text-white">
+            <h1 style="font-family: Liberation Mono" class="">The Specifics</h1>
+            <h3 style="transform: translate(0, -20px);" class="px">Determine what's on the line, and how you want to track it</h3>
+        </div>
+        <div style="width: 400px; margin-left: 30px" class="text-white">
+            <div style="" class="form-outline mb-4">
+            <input type="" name="title" class="form-control bg-black text-white"/>
+            <label class="form-label" for="title"><strong>Submission Frequency:</strong> How often you want to submit evidence of your progress</label>
+            </div>
+
+            <div style="" class="form-outline mb-4">
+                <input type="" name="aim" class="form-control bg-black text-white"/>
+                <label class="form-label" for="aim"><strong>Submission Tolerance:</strong> What percentage of your submissions you're okay with missing</label>
+            </div>
+
+            <div style="" class="form-outline mb-4">
+                <input type="" name="wager" class="form-control bg-black text-white"/>
+                <label class="form-label" for="wager"><strong>Recipient on Failure:</strong> The Solana address of whoever gets your money if you fail</label>
+            </div>
+            <div class="form-group">
+                <input style="width: 160px" type="date" name="vote_deadline" class="form-control bg-black text-white" placeholder="mm/dd/yy"/>
+                <label for="date" style="font-weight: normal;" class="form-label"><strong>Vote Deadline:</strong> How long you have to vote after your contract ends</label>
+            </div>
+            <a href="/about/">Need Help?</a>
+
+            <div class="" style="width: ; transform: translate(0, 10px)">
+                <button type="submit" class="btn btn-primary">Create Contract</button>
+            </div>
+        </div>
+</form>
+<!--
+
+    ABOUT YOUR CONTRACT: 
+    Title
+    Aim
+    End Date
+    How much is on the line
+
+    ARBITRATION:
+    Referee 1
+    Referee 2
+
+    THE SPECIFICS:
+    Submission Tolerance & frequency
+    Vote deadline
+    Recipient on failure
+-->
+
+{% endblock content %}

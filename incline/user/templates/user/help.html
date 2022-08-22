@@ -1,0 +1,57 @@
+{% extends 'user/base.html' %}
+{% block title %}Help{% endblock title %}
+{% block help %}active" aria-current="page"{% endblock %}
+{% block content %}
+
+<div class="text-white" style="width: 600px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+
+    {% for message in messages %}
+            <strong>Error!</strong> Username or password not found.
+    {% endfor %}
+
+    <form method="post"> {% csrf_token %}
+
+        <div class="mb-4">
+            <p>Fill in the Form, or contact us through Help@Incline.com</p>
+        </div>
+
+        <div class="mb-4">
+        <select class="form-control bg-black text-white" name="issue">
+            <option>Choose...</option>
+            <option>Technical problem with Contracts </option>
+            <option>Technical problem with Website </option>
+            <option>Technical problem with Incline (Arbitration) </option>
+            <option>Help with Contracts </option>
+            <option>Help with Website </option>
+            <option>Help with Incline (Arbitration)</option>
+            <option>Other</option>
+        </select>
+        <label class="form-label" for="issue">Your Issue</label>
+        </div>
+
+        <div class="mb-4">
+            <select class="form-control bg-black text-white" name="issue">
+                <option>Choose...</option>
+                <option>High </option>
+                <option>Medium </option>
+                <option>Low</option>
+            </select>
+            <label class="form-label" for="issue">Urgency</label>
+            </div>
+
+        <div style="" class="form-outline mb-4">
+            <textarea class="form-control text-white bg-black" name="description" rows="3"></textarea>
+            <label class="form-label" style="font-weight: normal;" for="description">Description</label>
+        </div>
+
+        <div class="form-outline mb-4">
+        <input type="text" name="password" class="form-control bg-black text-white" />
+        <label class="form-label" for="password">Email / Phone</label>
+        </div>
+    
+        <!-- Submit form -->
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock content %}

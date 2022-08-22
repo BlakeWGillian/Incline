@@ -1,0 +1,338 @@
+{% extends 'user/base.html' %}
+{% block title %}Contracts{% endblock title %}
+{% block contracts %}white{% endblock contracts %}
+{% block content %}
+
+<div class="row" style="position: static; margin-top: 56px; margin-right: 0px; height: 100%;">
+    <div class="pe-0 col-2" style="background: #1a1a1a; height: 1580px"> <!-- need to change height -->
+        <div class="bg-black" style="padding: 10px;">
+            <span class="px-1 fw-semibold text-white" style="font-family: Courier New; font-size: 21px;">Contracts</span>
+        </div>
+        <div class="py-2 list-group list-group-flush scrollarea">
+            {% for contract in user_contracts %}
+            <a href="{{ contract.id }}" class="list-group-item list-group-item-action py-1 lh-tight text-white" style="background: {% if contract.id == contractnumber %}black{% else %}#1a1a1a{% endif %};">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <strong class="mb-1">{{ contract.title }}</strong>
+            </div>
+            <div class="mb-1 small">{{ contract.aim }}</div>
+            </a>
+            {% endfor %}
+            {% if referee_cont or referee2_cont %}<div class="py-1 px-2 lh-tight text-white">Arbitrating:</div>{% endif %}
+            {% for contract in referee_cont %}
+            <a href="{{ contract.id }}" class="list-group-item list-group-item-action py-1 lh-tight text-light" style="background: {% if contract.id == contractnumber %}black{% else %}#1a1a1a{% endif %};">
+                <div class="d-flex w-100 align-items-center justify-content-between">
+                <strong class="mb-1">{{ contract.title }} ({{ contract.user }})</strong>
+            </div>
+            <div class="mb-1 small">{{ contract.aim }}</div>
+            </a>
+            {% endfor %}
+            {% for contract in referee2_cont %}
+            <a href="{{ contract.id }}" class="list-group-item list-group-item-action py-1 lh-tight text-light" style="background: {% if contract.id == contractnumber %}black{% else %}#1a1a1a{% endif %};">
+            <div class="d-flex w-100 align-items-center justify-content-between">
+                <strong class="mb-1">{{ contract.title }} ({{ contract.user }})</strong>
+            </div>
+            <div class="mb-1 small">{{ contract.aim }}</div>
+            </a>
+            {% endfor %}
+            <a href="/user/new_contract/" class="text-white pe-0 col-2 border-top" style="position: fixed; bottom: 0; background: #1a1a1a; text-decoration: none; padding: 16px; width: 16.1%;">
+                <strong class="">+ New Contract</strong>
+            </a>
+        </div>
+    </div>
+{% if contractnumber != 0 %}<!-- contract 0 -->
+    {% if cont.user == request.user %}
+    <div class="col-4" style="background: black;">
+        <div class="bg-black" style="padding: 10px;">
+            <span class="px-1 fw-semibold text-white" style="font-family: Courier New; font-size: 21px;">The Code</span>
+        </div>
+        <div style="color: white; background: #1a1a1a; padding: 10px;">
+            We belive that a contract should be transparent.
+            The code below outlines the parameters of <a href="/about/">your contract.</a>
+        </div>
+        <pre><code class="python" style="background: #1a1a1a;">#title: {{ cont.title }}
+#aim: {{ cont.aim }}
+#stakes: ${{ cont.wager }}
+#user: {{ cont.user }}
+#referee: {{ cont.referee }}
+#referee_2: {{ cont.referee2 }}
+#recipient_on_failure: {{ cont.f_recipient }}
+
+#submission_frequency: every {{ cont.sub_freq }} days
+#submission_tolerance: {{ cont.sub_tolerance }}
+
+#end_date: {{ cont.end_date }}
+#vote_deadline {{ cont.vote_deadline }}
+
+import time
+
+user_hash = 'sampleuserHash'
+
+def goaluser_password, user_id, action:
+    if hashuser_password == user_id:
+        #contract
+        if time >= contract.contracttimeuser_id:
+            #execute contract
+            contract = "executed"
+        else:
+            #more contract behavior.
+            contract.info = "edited"
+        </code></pre>
+    </div>
+    <div class="col-6" style="background: black;">
+        <div class="" style="padding: 10px;">
+            <span class="px-1 fw-semibold text-white" style="font-family: Courier New; font-size: 21px;">Your Progress</span>
+        </div>
+
+        <div style="padding-left: 30px; padding-bottom: 15px" class="text-white">
+            <div style="padding-bottom: 20px;">
+                <strong>Upload Data</strong> <!-- find a better way to do this -->
+            </div>
+            <form style="width: 75%; transform: translate(12.5%, 0);" method="post" enctype='multipart/form-data'> {% csrf_token %}
+                {% for message in messages %} <!-- this is slightly strange. perhaps use the message-->
+                {% if message|stringformat:"s" == "f1_fill_error" %}
+                <strong>Error!</strong> All required fields must be filled.
+                {% elif message|stringformat:"s" == "f1_fill_error" %} <!-- temporary because of date submission -->
+                <strong>Error!</strong> Invalid data submitted.
+                {% endif %}
+                {% endfor %}
+                <div class="form-outline mb-1">
+                    <textarea class="form-control text-white bg-black" name="description" rows="3"></textarea>
+                    <label class="form-label" style="font-weight: normal;" for="description">Description*</label>
+                </div>
+
+                    <div style="height: 70px;" class="form-row">
+                    <div class="form-group">
+                        <input style="width: 160px" type="date" name="date" class="form-control bg-black text-white" placeholder="mm/dd/yy"/>
+                        <label for="date" style="font-weight: normal;" class="form-label">Date*</label>
+                    </div>
+                    <div style="transform: translate(160px, -70px); margin-left: 10px; width: 600px" class="form-group">
+                        <input style="width: 514px;" class="form-control bg-black text-white" type="file" name="file">
+                        <label for="file" style="font-weight: normal;" class="form-label">File Upload</label>
+                    </div>
+                    </div>
+
+                <div class="form-outline mb-0">
+                    <input type="text" name="notes" class="form-control bg-black text-white" />
+                    <label class="form-label" style="font-weight: normal;" for="notes">Notes</label>
+                </div>
+
+                <div style="font-weight: normal;" class="mb-1"><small>*Required Field</small></div>
+                <button class="btn btn-primary" name="submit" type="submit" value="1">Submit</button>
+            </form>
+        </div>
+
+        <div style="padding-left: 30px;" class="text-white">
+            <div style="padding-bottom: 20px;">
+                <strong>Tracking</strong>
+            </div>
+            <div style="width: 40%; height: 40%; transform: translate(25%, 0)">
+                <canvas id="myChart" width="1" height="1"></canvas>
+                <canvas style="transform: translate(100%, -100%); width: 50%; height: 50%;" id="myChart2" width="1" height="1"></canvas>
+            </div>
+        </div>
+        <div style="padding-left: 30px; padding-bottom: 15px; transform: translate(0, -350px)" class="text-white">
+            <div style="padding-bottom: 20px;">
+                <strong>View Uploads</strong> <!-- find a better way to do this -->
+            </div>
+            <form style="width: 75%; transform: translate(12.5%, 0); opacity: 75%;" method="post"> {% csrf_token %}
+                {% for message in messages %} <!-- this is slightly strange. perhaps use the message-->
+                {% if message|stringformat:"s" == "f2_error" %}
+                <strong>Error!</strong> Select a valid entry.
+                {% endif %}
+                {% endfor %}
+                
+                <div class="input-group" style="width: 684px;">
+                    <select name="ssub_id" class="custom-select dropdown text-light bg-black border rounded" style="width: 614px" id="viewsub">
+                      <option style="width: 614px" value="0">Choose...</option>
+                      {% for submission in submissions %} <!-- this is slightly strange. perhaps use the message-->
+                      <option value="{{ submission.id }}" {% if ssub_id == submission.id %}selected{% endif %}>{{ submission.date }}: {{ submission.description|truncatechars:73 }}</option>
+                      {% endfor %}
+                    </select>
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" name="submit" type="submit" value="2">Select</button>
+                    </div>
+                </div>
+            </form>
+            {% for submission in submissions %}
+            {% if ssub_id == submission.id %}
+            <div style="width: 75%; transform: translate(12.5%, 0);">
+                <pre>
+
+Description: {{ submission.description }}
+Date: {{ submission.date }}
+File: {% if submission.file %}<a href="{{submission.file.url}}">{{submission.file}}</a>{% else %}{% endif %}
+Notes: {{ submission.notes }}
+                </pre>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+{% elif cont.referee == request.user or cont.referee2 == request.user %}
+<div class="col-4" style="background: black;">
+    <div class="bg-black" style="padding: 10px;">
+        <span class="px-1 fw-semibold text-white" style="font-family: Courier New; font-size: 21px;">Voting</span>
+    </div>
+
+    <div style="padding-left: 30px;" class="text-white">
+        <div style="padding-bottom: 20px;">
+            {% if contract_finished == 0 %}
+            <strong>{{ cont.end_date|timeuntil }}</strong> until the contract ends
+            {% else %}
+            <strong>{{ cont.vote_deadline|timeuntil }}</strong> until your vote must be submitted
+            {% endif %}
+        </div>
+        <div style="{% if contract_finished == 0 %}opacity: 50%;{% endif %}">
+            <div style="padding-bottom: 20px;">
+                <strong style="padding-bottom: 20px;">Your Vote:</strong>
+            </div>
+            <form style="width: 90%; transform: translate(12.5%, 0);" method="post"> {% csrf_token %}
+                <div style="padding-bottom: 30px;">
+                    {{ cont.user }} completed the aim to "{{ cont.aim }}" by {{ cont.end_date }}
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="vote" value="1" {% if contract_finished == 0 %}disabled{% endif %}>
+                    <label class="form-check-label" for="vote">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="vote" value="0" {% if contract_finished == 0 %}disabled{% endif %}>
+                    <label class="form-check-label" for="vote">No</label>
+                </div>
+                <br>
+
+                <div class="text-danger pt-4">
+                    Warning: Your vote cannot be changed.
+                </div>
+
+                {% for message in messages %} <!-- this is slightly strange. perhaps use the message-->
+                {% if message|stringformat:"s" == "f3_error" %}
+                <strong>Error!</strong> Select a valid option.
+                <br>
+                {% endif %}
+                {% endfor %}
+                <button class="btn btn-outline-primary" name="submit" type="submit" value="3" {% if contract_finished == 0 %}disabled{% endif %}>Vote</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<div class="col-6" style="background: black;">
+    <div class="" style="padding: 10px;">
+        <span class="px-1 fw-semibold text-white" style="font-family: Courier New; font-size: 21px;">Their Progress</span>
+    </div>
+    <div style="padding-left: 30px;" class="text-white">
+        <div style="padding-bottom: 20px;">
+            <strong>Tracking</strong>
+        </div>
+        <div style="width: 40%; height: 40%; transform: translate(25%, 0)">
+            <canvas id="myChart" width="1" height="1"></canvas>
+            <canvas style="transform: translate(100%, -100%); width: 50%; height: 50%;" id="myChart2" width="1" height="1"></canvas>
+        </div>
+    </div>
+    <div style="padding-left: 30px; padding-bottom: 15px; transform: translate(0, -350px)" class="text-white">
+        <div style="padding-bottom: 20px;">
+            <strong>View Uploads</strong> <!-- find a better way to do this -->
+        </div>
+        <form style="width: 75%; transform: translate(12.5%, 0); opacity: 75%;" method="post"> {% csrf_token %}
+            {% for message in messages %} <!-- this is slightly strange. perhaps use the message-->
+            {% if message|stringformat:"s" == "f2_error" %}
+            <strong>Error!</strong> Select a valid entry.
+            {% endif %}
+            {% endfor %}
+            
+            <div class="input-group" style="width: 684px;">
+                <select name="ssub_id" class="custom-select dropdown text-light bg-black border rounded" style="width: 614px" id="viewsub">
+                  <option style="width: 614px" value="0">Choose...</option>
+                  {% for submission in submissions %} <!-- this is slightly strange. perhaps use the message-->
+                  <option value="{{ submission.id }}" {% if ssub_id == submission.id %}selected{% endif %}>{{ submission.date }}: {{ submission.description|truncatechars:73 }}</option>
+                  {% endfor %}
+                </select>
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" name="submit" type="submit" value="2">Select</button>
+                </div>
+            </div>
+        </form>
+        {% for submission in submissions %}
+        {% if ssub_id == submission.id %}
+        <div style="width: 75%; transform: translate(12.5%, 0);">
+            <pre>
+
+Description: {{ submission.description }}
+Date: {{ submission.date }}
+File: {% if submission.file %}<a href="{{submission.file.url}}">{{submission.file}}</a>{% else %}{% endif %}
+Notes: {{ submission.notes }}
+            </pre>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+{% else %}
+    <div class="bg-white" style="height: 20px; width: 20px; position: fixed; bottom: 2.7%; left: 17%; transform: rotate(45deg) translate(0, 13px)"></div>
+    <div class="bg-black" style="height: 40px; width: 20px; position: fixed; bottom: 2.7%; left: 17%; transform: translate(0, 13px)"></div>
+    <div style="height: 3px; width: 300px; background: white; position: fixed; bottom: 2.7%; left: 17%;"></div>
+    <div class="text-white bg-black" style="font-size: 20px; background: white; position: fixed; bottom: 0%; left: 72%; transform: translate(-50%, -50%)">
+        Click <a href="/user/new_contract/">New Contract</a> to start.
+    </div>
+{% endif %}
+{% endif  %} <!-- Contract 0 -->
+
+    <script>
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [{% for date in date_labels %}"{{ date }}", {% endfor %}],
+                datasets: [{
+                    label: '# of submissions',
+                    data: [{% for date_s in date_tally %}"{{ date_s }}", {% endfor %}],
+                    backgroundColor: [
+                        '#fff',
+                    ],
+                    borderColor: [
+                        '#fff',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+    <script>
+        const ctx2 = document.getElementById('myChart2').getContext('2d');
+        const myChart2 = new Chart(ctx2, {
+            type: 'pie', <!-- doughnut, pie -->
+            data: {
+                labels: ["Submissions Met", "Submissions Not Met"],
+                datasets: [{
+                    label: 'dataset',
+                    data: ["{{ sub_missed }}", "{{ date_range_un}}"],
+                    backgroundColor: [
+                        '#fff',
+                        'rgb(255, 205, 86)',
+                    ],
+                    borderColor: [
+                        '#fff',
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                }
+            }
+        });
+    </script>
+
+    {% endblock content %}
+</div>
